@@ -29,7 +29,7 @@ fn draw_board<S: Data<Elem = char>>(board: &ArrayBase<S, Ix2>) {
         for c in 0..columns {
 
             print!("{}", board[[r, c]]);
-            if (c!=columns-1) {
+            if c!=columns-1  {
                 print!("|");
             } else {print!("\n");}
 
@@ -43,8 +43,8 @@ fn draw_board<S: Data<Elem = char>>(board: &ArrayBase<S, Ix2>) {
 }
 
 fn play_game<S: DataMut<Elem = char>>(mut is_human_turn: bool, is_human_x: bool, board: &mut ArrayBase<S, Ix2>) {
-    while (!game_over(&board)) {
-         if (is_human_turn) {
+    while !game_over(&board)  {
+         if is_human_turn  {
         get_human_move(is_human_x, &mut *board);
     } else {get_robot_move(is_human_x, &mut *board);}
     
@@ -54,7 +54,7 @@ fn play_game<S: DataMut<Elem = char>>(mut is_human_turn: bool, is_human_x: bool,
     }
 }
 
-fn get_human_move<S: DataMut<Elem = char>>(is_human_x: bool, board: &mut ArrayBase<S, Ix2>) {
+fn get_human_move<S: DataMut<Elem = char>>(_is_human_x: bool, board: &mut ArrayBase<S, Ix2>) {
     let (rows, columns) = board.dim();
 
     for r in 0..rows {   
@@ -68,7 +68,7 @@ fn get_human_move<S: DataMut<Elem = char>>(is_human_x: bool, board: &mut ArrayBa
     }
 }
 
-fn get_robot_move<S: DataMut<Elem = char>>(is_human_x: bool, board: &mut ArrayBase<S, Ix2>) {
+fn get_robot_move<S: DataMut<Elem = char>>(_is_human_x: bool, board: &mut ArrayBase<S, Ix2>) {
     let (rows, columns) = board.dim();
 
     for r in 0..rows {   
